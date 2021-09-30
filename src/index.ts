@@ -3,10 +3,10 @@
 // See: https://github.com/ethereum/wiki/wiki/JSON-RPC
 
 import { Provider, TransactionRequest, TransactionResponse } from "@ethersproject/abstract-provider";
-import { UserOperation }from "./userOperation";
+// import { UserOperation }from "./userOperation";
 import { Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "@ethersproject/abstract-signer";
-import { BigNumber } from "@ethersproject/bignumber";
-import { Bytes, hexlify, hexValue, isHexString } from "@ethersproject/bytes";
+import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
+import { Bytes, hexlify, hexValue, isHexString, BytesLike } from "@ethersproject/bytes";
 import { _TypedDataEncoder } from "@ethersproject/hash";
 import { Network, Networkish } from "@ethersproject/networks";
 import { checkProperties, deepCopy, Deferrable, defineReadOnly, getStatic, resolveProperties, shallowCopy } from "@ethersproject/properties";
@@ -23,6 +23,21 @@ import { keccak_256 } from "js-sha3";
 
 
 const errorGas = [ "call", "estimateGas" ];
+
+export type UserOperation = {
+    sender?: string,
+    nonce?: BigNumberish,
+    initCode?: BytesLike,
+    callData?: BytesLike,
+    callGas?: BigNumberish,
+    verificationGas?: BigNumberish,
+    preVerificationGas?: BigNumberish,
+    paymaster?: string,
+    paymasterData?: BytesLike,
+    signature?: BytesLike,
+    maxPriorityFeePerGas?: BigNumberish,
+    maxFeePerGas?: BigNumberish;
+}
 
 function checkError(method: string, error: any, params: any): any {
     // Undo the "convenience" some nodes are attempting to prevent backwards
