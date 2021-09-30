@@ -2,7 +2,8 @@
 
 // See: https://github.com/ethereum/wiki/wiki/JSON-RPC
 
-import { Provider, TransactionRequest, TransactionResponse, UserOperation } from "../../abstract-provider/src.ts/index";
+import { Provider, TransactionRequest, TransactionResponse } from "@ethersproject/abstract-provider";
+import { UserOperation }from "./userOperation";
 import { Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "@ethersproject/abstract-signer";
 import { BigNumber } from "@ethersproject/bignumber";
 import { Bytes, hexlify, hexValue, isHexString } from "@ethersproject/bytes";
@@ -14,10 +15,10 @@ import { AccessList, accessListify } from "@ethersproject/transactions";
 import { ConnectionInfo, fetchJson, poll } from "@ethersproject/web";
 
 import { Logger } from "@ethersproject/logger";
-import { version } from "./_version";
+import { version } from "@ethersproject/providers/src.ts/_version";
 const logger = new Logger(version);
 
-import { BaseProvider, Event } from "./base-provider";
+import { BaseProvider, Event } from "@ethersproject/providers/src.ts/base-provider";
 import { keccak_256 } from "js-sha3";
 
 
