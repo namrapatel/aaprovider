@@ -262,12 +262,12 @@ export class AASigner extends Signer implements TypedDataSigner {
         }
     }
 
-    async sendUserOperation(transaction: Deferrable<UserOperation>): Promise<string> {
+    async sendUserOperation(userOperation: Deferrable<UserOperation>): Promise<string> {
         // TODO: checkTransaction()
         // TODO: check the perform() method in base-provider
         // TODO: gasLimit issue: ethers will do an incorrect gas estimation on contract call unless a gasLimit is given 
 
-        const tx: Deferrable<UserOperation> = await resolveProperties(transaction)
+        const tx: Deferrable<UserOperation> = await resolveProperties(userOperation)
 
         // transaction = shallowCopy(transaction);
 
